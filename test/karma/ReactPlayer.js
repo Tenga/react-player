@@ -120,7 +120,7 @@ describe('ReactPlayer', () => {
             }}
             onProgress={progress => {
               expect(progress).to.be.an('object')
-              if (progress.played && progress.loaded) {
+              if (progress.played) {
                 expect(player.getCurrentTime()).to.be.a('number')
                 bump('onProgress')
               }
