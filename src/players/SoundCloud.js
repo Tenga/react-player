@@ -41,7 +41,7 @@ export default class SoundCloud extends Base {
           this.props.onPause()
         })
         this.player.bind(PLAY_PROGRESS, e => {
-          this.fractionPlayed = e.relativePosition
+          this.currentTime = e.currentPosition / 1000
           this.fractionLoaded = e.loadedProgress
         })
         this.player.bind(FINISH, () => this.props.onEnded())
@@ -84,11 +84,11 @@ export default class SoundCloud extends Base {
   getDuration () {
     return this.duration
   }
-  getFractionLoaded () {
-    return this.fractionLoaded
+  getSecondsLoaded () {
+    return this.fractionLoaded * this.duration
   }
-  getFractionPlayed () {
-    return this.fractionPlayed
+  getCurrentTime () {
+    return this.currentTime
   }
   ref = iframe => {
     this.iframe = iframe
